@@ -2,6 +2,7 @@
 -- Main
 
 -- Created by: Justin Richards
+-- Created by: Ben Hubert
 -- Created on: Nov-2016
 -- Created for: ICS2O
 -- This is the project for Group #6-2016
@@ -16,10 +17,12 @@ DEBUG_GAMECENTER = true
 itemPurcased = {}
 worldSelected = nil
 levelSelected = nil
+backgroundColor = color(178, 178, 178, 255)
+local legendbackground
 
 -- local variables to this scene
 
-
+--sprite("Dropbox:ownedItemsHelpPicture")
 -- Use this function to perform your initial setup
 function setup() -- set up display options
     
@@ -36,12 +39,14 @@ function setup() -- set up display options
     Scene("storeScreenScene", StoreScreenScene)
     Scene("creditsScene", CreditsScene)
     Scene("mainWorldScene", MainWorldScene)
+    Scene("storeHelpScene", StoreHelpScene)
     Scene("mainGameScene", MainGameScene)
     Scene("mainGameFailScene", MainGameFailScene)
     Scene("mainGameWinScene", MainGameWinScene)
     Scene("mainWorldScene", MainWorldScene)
     Scene("afterLevelWinScene", AfterLevelWinScene)
     Scene("afterLevelFailScene",AfterLevelFailScene)
+
     Scene.Change("companyLogoScene")
     
 end

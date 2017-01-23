@@ -23,15 +23,14 @@ function MainWorldScene:init()
     ww1Button = Button("Dropbox:Block Special", vec2(WIDTH/4, HEIGHT/1.3))
     ww2Button = Button("Dropbox:Block Brick", vec2(WIDTH/1.3, HEIGHT/1.3))
     ww3Button = Button("Dropbox:Block Grass", vec2(WIDTH/4, HEIGHT/3.5))
-    ww4Button = Button("Dropbox:Block Special Brick", vec2(WIDTH/1.3, HEIGHT/3.5))
-    
+    ww4Button = Button("Dropbox:Block Special Brick", vec2(WIDTH/1.3, HEIGHT/3.5))    
 end
     
 
 function MainWorldScene:draw()
     -- Codea does not automatically call this method
 
-    background(60, 0, 255, 255)
+    background(backgroundColor)
     fill(199, 255, 0, 255)
     stroke(221, 255, 0, 255)
     fontSize(75)
