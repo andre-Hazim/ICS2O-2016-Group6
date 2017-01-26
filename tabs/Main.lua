@@ -26,6 +26,7 @@ local legendbackground
 -- Use this function to perform your initial setup
 function setup() -- set up display options
     
+    supportedOrientations(LANDSCAPE_ANY)
     displayMode(FULLSCREEN)
     noFill()
     noSmooth()
