@@ -13,7 +13,8 @@ timeLimit = nil
 local anologClocks = {}
 local digitalClocks = {}
 local numberToTime = {}
-local monsterList = {"Dropbox:cutOutMonster1","Dropbox:cutOutMonster11","Dropbox:cutOutMonster8"}
+-- sprite("Dropbox:cutOutMonster9")
+local monsterList = {"Dropbox:cutOutMonster1","Dropbox:cutOutMonster11","Dropbox:cutOutMonster8","Dropbox:cutOutMonster10","Dropbox:cutOutMonster9"}
 local digitalClockSelectedNumber
 local digitalClockSelectedNumber2
 local digitalClockSelectedNumber3
@@ -564,14 +565,25 @@ function MainGameScene:init()
     if(timeLimit<0)then
        timeLimit= timeLimit - 0.2
     end
-   
+    if(worldSelected == 1 and score == 5)then
+        score = 0
+    end
+    if(worldSelected == 2 and score == 10)then
+        score = 0
+    end
+    if(worldSelected == 3 and score == 15)then
+        score = 0
+    end
+    if(worldSelected == 4 and score == 20)then
+        score = 0
+    end
     
 end
 
 function MainGameScene:draw()
     
     
-    background(83, 140, 28, 255)
+    background(backgroundColor)
     bossCharacter:draw()
    
     
@@ -619,6 +631,7 @@ function MainGameScene:draw()
     if (timeLimit <= 0)then
         Scene.Change("mainGameFailScene")
     end
+    
     
      -- show analoge clock picked
     anologClockSelectedSpriteObject:draw()

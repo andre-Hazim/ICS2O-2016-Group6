@@ -13,11 +13,13 @@ function AfterLevelWinScene:draw()
     fontSize(100)
     fill(0, 0, 0, 255)
     text("You Won!",WIDTH/2,HEIGHT/2)
+    backButton:draw()
 end
 
 function AfterLevelWinScene:touched(touch)
     -- Codea does not automatically call this method
+    backButton:touched(touch)
     if(backButton.selected == true)then
-        Scene.Change("mainMenuScene")
+        Scene.Change("mainWorldScene")
     end
 end

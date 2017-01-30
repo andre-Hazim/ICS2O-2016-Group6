@@ -18,7 +18,7 @@ local ww4Button
 
 function MainWorldScene:init()
 
-    sprite("Dropbox:fallWorld")
+    -- sprite("Dropbox:fallWorld")
     mBackButton = Button("Dropbox:Blue Back Circle Button", vec2(WIDTH/20, HEIGHT/1.067, WIDTH/6, HEIGHT/6))  
     ww1Button = Button("Dropbox:summerWorld@2x (1)", vec2(WIDTH/4, HEIGHT/1.3))
     ww2Button = Button("Dropbox:springWorld", vec2(WIDTH/1.3, HEIGHT/1.3))
