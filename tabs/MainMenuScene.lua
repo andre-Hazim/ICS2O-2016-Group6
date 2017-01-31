@@ -16,6 +16,7 @@ local creditsButton
 local acheivmentsButton
 local playButton
 local owneditemsbutton
+local settingsButton
 
 -- Use this function to perform your initial setup for this scene
 function MainMenuScene:init()
@@ -32,6 +33,7 @@ function MainMenuScene:init()
     creditsButton = Button("Dropbox:Selector", vec2(WIDTH/1.05, HEIGHT/0.9899))
     acheivmentsButton = Button("Dropbox:Chest Closed", vec2(WIDTH/20, HEIGHT/0.9899))
     playButton = Button("Dropbox:Blue Move Scene Forward Button", vec2(WIDTH/2, HEIGHT/2))
+    settingsButton = Button("Dropbox:Explosion", vec2(WIDTH/21, HEIGHT/8))
 end
 
 function MainMenuScene:draw()
@@ -44,6 +46,7 @@ function MainMenuScene:draw()
     creditsButton:draw()
     acheivmentsButton:draw()
     playButton:draw()
+    settingsButton:draw()
     
 end
 
@@ -54,6 +57,7 @@ function MainMenuScene:touched(touch)
     creditsButton:touched(touch)
     acheivmentsButton:touched(touch)
     playButton:touched(touch)
+    settingsButton:touched(touch)
     
     if(storeButton.selected == true) then
        Scene.Change("storeScreenScene")
@@ -67,4 +71,7 @@ function MainMenuScene:touched(touch)
         Scene.Change("mainWorldScene")
     end
     
+    if(settingsButton.selected == true) then
+        Scene.Change("settingsScene")
+    end
 end

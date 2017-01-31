@@ -19,6 +19,7 @@ worldSelected = nil
 levelSelected = nil
 backgroundColor = color(178, 178, 178, 255)
 local legendbackground
+backMusic = nil
 
 -- local variables to this scene
 
@@ -45,10 +46,11 @@ function setup() -- set up display options
     Scene("mainGameFailScene", MainGameFailScene)
     Scene("mainGameWinScene", MainGameWinScene)
     Scene("afterLevelWinScene", AfterLevelWinScene)
-    
+    Scene("afterLevelFailScene",AfterLevelFailScene)
+    Scene("settingsScene", SettingsScene)
 
     Scene.Change("companyLogoScene")
-    
+    backMusic = music("Game Music One 2:Venus", 10000000)
 end
 
 -- This function gets called once every frame
