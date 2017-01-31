@@ -9,10 +9,12 @@
 MainGameScene = class()
 
 score = 0
-timeLimit = 180
+timeLimit = nil
 local anologClocks = {}
 local digitalClocks = {}
 local numberToTime = {}
+-- sprite("Dropbox:cutOutMonster9")
+local monsterList = {"Dropbox:cutOutMonster1","Dropbox:cutOutMonster11","Dropbox:cutOutMonster8","Dropbox:cutOutMonster10","Dropbox:cutOutMonster9"}
 local digitalClockSelectedNumber
 local digitalClockSelectedNumber2
 local digitalClockSelectedNumber3
@@ -32,10 +34,12 @@ local levelOne
 local digitalTimeOne 
 local digitalTimeTwo
 local digitalTimeThree
-local bossCharacter
+local bossCharacter 
 local health
 local healthBar
 local digitalTimes = {}
+local selectedDigitalClocks = {}
+local selectedTime
 
 function sleep(n)
     local time = os.clock()
@@ -191,7 +195,7 @@ end
     table.insert(numberToTime, "12:55")
     
     
-     sprite("Dropbox:digital-6-10")
+     
     
     anologClocks["1:00"] = "Dropbox:anologe-1-00"
     anologClocks["1:05"] = "Dropbox:anologe-1-05"
@@ -335,7 +339,7 @@ end
     anologClocks["12:50"] = "Dropbox:anologe-12-50"
     anologClocks["12:55"] = "Dropbox:anologe-12-55"
     
-    
+-- sprite("Dropbox:digital-3-40")
     
     digitalClocks["1:00"] = "Dropbox:digital-1-00"
     digitalClocks["1:05"] = "Dropbox:digital-1-05"
@@ -478,96 +482,108 @@ end
     digitalClocks["12:45"] = "Dropbox:digital-12-45"
     digitalClocks["12:50"] = "Dropbox:digital-12-50"
     digitalClocks["12:55"] = "Dropbox:digital-12-55"
-
-
-   
     
+
     
     
     
 function MainGameScene:init()
     mBackButton = Button("Dropbox:Blue Back Circle Button", vec2(WIDTH/20, HEIGHT/1.067))
     if(worldSelected == 2)then
-        timeLimit = 100
+        timeLimit = 15
     elseif(worldSelected == 1)then
-        timeLimit = 180
+        timeLimit = 20
     elseif(worldSelected == 3)then
-        timeLimit = 70
+        timeLimit = 10
     elseif(worldSelected== 4)then
-        timeLimit = 50
+        timeLimit = 5
     end
     if(worldSelected == 1)then
-        scoreLimit= 15
+        scoreLimit= 5
         if(scoreLimit == score)then
             Scene.Change("afterLevelWinScene")
         end
     end
     if(worldSelected == 2)then
-        scoreLimit= 20
+        scoreLimit= 10
         if(scoreLimit == score)then
             Scene.Change("afterLevelWinScene")
         end
     end
     if(worldSelected == 3)then
-        scoreLimit= 25
+        scoreLimit= 15
         if(scoreLimit == score)then
             Scene.Change("afterLevelWinScene")
         end
     end
     if(worldSelected == 4)then
-        scoreLimit= 30
+        scoreLimit= 20
         if(scoreLimit == score)then
             Scene.Change("afterLevelWinScene")
         end
     end
     
+    selectedDigitalClocks = {math.random(1, #numberToTime), math.random(1, #numberToTime), math.random(1, #numberToTime), math.random(1, #numberToTime), math.random(1, #numberToTime), math.random(1, #numberToTime)}
+    selectedTime = math.random(1, 6)
+    anologClockSelectedNumber = selectedDigitalClocks[selectedTime]
+    digitalClockSelectedNumber = selectedDigitalClocks[1]
+    digitalClockSelectedNumber2 = selectedDigitalClocks[2]
+    digitalClockSelectedNumber3 = selectedDigitalClocks[3]
+    digitalClockSelectedNumber4 = selectedDigitalClocks[4]
+    digitalClockSelectedNumber5 = selectedDigitalClocks[5]
+    digitalClockSelectedNumber6 = selectedDigitalClocks[6]
     
-    anologClockSelectedNumber = math.random(1, #numberToTime)
-    digitalClockSelectedNumber = math.random(1, #numberToTime)
-    digitalClockSelectedNumber2 = math.random(1,#numberToTime)
-    digitalClockSelectedNumber3 = math.random(1,#numberToTime)
-    digitalClockSelectedNumber4 = math.random(1,#numberToTime)
-    digitalClockSelectedNumber5 = math.random(1,#numberToTime)
     
     timePicked = numberToTime[anologClockSelectedNumber]
     anologClockSelectedSpriteObject = Button(anologClocks[timePicked], vec2(WIDTH/2, HEIGHT/2.3))
+    timePicked = numberToTime[digitalClockSelectedNumber6]
     digitalClockSelectedSpriteObjectAnswer = Button(digitalClocks[timePicked], vec2(WIDTH/7,HEIGHT/2))
-    print(anologClocks[timePicked])
     timePicked = numberToTime[digitalClockSelectedNumber]
     digitalClockSelectedSpriteObject = Button(digitalClocks[timePicked], vec2(WIDTH/1.2, HEIGHT/2))
-    print(digitalClocks[timePicked])
     timePicked = numberToTime[digitalClockSelectedNumber2]
     digitalClockSelectedSpriteObjectTwo = Button(digitalClocks[timePicked], vec2(WIDTH/1.2, HEIGHT/3))
-    print(digitalClocks[timePicked])
     timePicked = numberToTime[digitalClockSelectedNumber3]
     digitalClockSelectedSpriteObjectThree = Button(digitalClocks[timePicked],vec2(WIDTH/1.2, HEIGHT/5))
-    print(digitalClocks[timePicked])
     timePicked = numberToTime[digitalClockSelectedNumber4] 
     digitalClockSelectedSpriteObjectFour = Button (digitalClocks[timePicked],vec2(WIDTH/7, HEIGHT/3))
-    print(digitalClocks[timePicked])
     timePicked = numberToTime[digitalClockSelectedNumber5] 
     digitalClockSelectedSpriteObjectFive =  Button (digitalClocks[timePicked],vec2(WIDTH/7, HEIGHT/5))
-    print(digitalClocks[timePicked])
 
     
     
     
     collectgarbage()
     -- sprite("Dropbox:digital-11-00")
-    bossCharacter = Button ("Planet Cute:Enemy Bug",vec2(WIDTH/2, HEIGHT/1.2))
+    
+    bossCharacter = Button (monsterList[math.random(1, #monsterList)],vec2(WIDTH/2, HEIGHT/1.2))
     health = 100
+    
     if (health == 0)then
             score= score +1
         print(score)
     end
-    
+    if(timeLimit<0)then
+       timeLimit= timeLimit - 0.2
+    end
+    if(worldSelected == 1 and score == 5)then
+        score = 0
+    end
+    if(worldSelected == 2 and score == 10)then
+        score = 0
+    end
+    if(worldSelected == 3 and score == 15)then
+        score = 0
+    end
+    if(worldSelected == 4 and score == 20)then
+        score = 0
+    end
     
 end
 
 function MainGameScene:draw()
     
     
-    background(83, 140, 28, 255)
+    background(backgroundColor)
     bossCharacter:draw()
    
     
@@ -576,7 +592,9 @@ function MainGameScene:draw()
     strokeWidth(5)
     stroke(0, 0, 0, 255)
     rect (WIDTH/2.4, HEIGHT/12, WIDTH/6, HEIGHT/6)
-    
+     if(health == 0)then
+        score = score+1
+    end
    
     -- making a timer 
     font("Courier")
@@ -584,12 +602,7 @@ function MainGameScene:draw()
     fill(0, 0, 0, 255)
     timeLimit = tonumber (timeLimit) - 0.02
         text (math.ceil(timeLimit), WIDTH/2, HEIGHT/5.2)
-    if(timeLimit<0)then
-       timeLimit= timeLimit - 0.2
-    end
-    if(health == 0)then
-        score = score+1
-    end
+    
     text ("score ".. (score), WIDTH/2, HEIGHT/9)
     fill(0, 0, 0, 255)
     rect(WIDTH/WIDTH/2,HEIGHT/1.5, WIDTH/1,HEIGHT/50)
@@ -598,7 +611,7 @@ function MainGameScene:draw()
     fontSize(70)
     fill(0, 0, 0, 255)
     
-
+    
     
     -- printing the levels and the world
       fontSize(25)
@@ -618,6 +631,7 @@ function MainGameScene:draw()
     if (timeLimit <= 0)then
         Scene.Change("mainGameFailScene")
     end
+    
     
      -- show analoge clock picked
     anologClockSelectedSpriteObject:draw()
@@ -641,23 +655,47 @@ function MainGameScene:touched(touch)
     digitalClockSelectedSpriteObjectFour:touched(touch)
     digitalClockSelectedSpriteObjectFive:touched(touch)
     mBackButton:touched(touch)
-      if(digitalClockSelectedSpriteObjectAnswer.selected == true)then
-         health = health - 100
-        
-    end
+
     if(mBackButton.selected == true) then
         Scene.Change("mainWorldScene")
     end
+    if(digitalClockSelectedSpriteObjectAnswer.selected == true)then
+         if (selectedTime == 6) then
+            health = health - 100
+         else
+            Scene.Change("mainGameFailScene")
+         end
+    end
     if (digitalClockSelectedSpriteObject.selected == true)then 
-        Scene.Change("mainGameFailScene")
+        if (selectedTime == 1) then
+            health = health - 100
+        else
+            Scene.Change("mainGameFailScene")
+        end
     elseif(digitalClockSelectedSpriteObjectTwo.selected == true)then
-        Scene.Change("mainGameFailScene")
+        if (selectedTime == 2) then
+            health = health - 100
+        else
+            Scene.Change("mainGameFailScene")
+        end
     elseif(digitalClockSelectedSpriteObjectThree.selected == true)then
-        Scene.Change("mainGameFailScene")
+        if (selectedTime == 3) then
+            health = health - 100
+        else
+            Scene.Change("mainGameFailScene")
+        end
     elseif(digitalClockSelectedSpriteObjectFour.selected == true)then
-        Scene.Change("mainGameFailScene")
+        if (selectedTime == 4) then
+            health = health - 100
+         else
+            Scene.Change("mainGameFailScene")
+       end
     elseif(digitalClockSelectedSpriteObjectFive.selected == true)then
-        Scene.Change("mainGameFailScene")
+        if (selectedTime == 5) then
+            health = health - 100
+        else 
+            Scene.Change("mainGameFailScene")
+        end
     end
     
     

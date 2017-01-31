@@ -12,7 +12,7 @@ function MainGameWinScene:draw()
     font("AmericanTypewriter-Bold")
     fontSize(100)
     fill(0, 0, 0, 255)
-    text("Winning",WIDTH/2,HEIGHT/2)
+    text("Correct",WIDTH/2,HEIGHT/2)
     timelimit = timelimit - 0.02
     math.ceil(timelimit)
     if (timelimit <=0)then

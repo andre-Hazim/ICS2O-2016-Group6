@@ -25,7 +25,6 @@ function Button:init(buttonImage, buttonPosition, buttonScaleSize)
     self.buttonImage = buttonImage
     self.buttonLocation = buttonPosition
     self.buttonScaleSize = buttonScaleSize or 1.0
-    
     self.buttonImageSize = vec2(spriteSize(self.buttonImage))
     -- resize the button to new size (or scale by 1.0 if no scale given!)
     if not(self.buttonScaleSize == 1.0) then

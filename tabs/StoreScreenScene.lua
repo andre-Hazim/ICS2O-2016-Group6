@@ -40,6 +40,7 @@ function StoreScreenScene:init()
     legendaryBackground = Button("Dropbox:Level Select BG", vec2(WIDTH/1.25, HEIGHT/4.1))
     codeBackground = Button("Dropbox:Level Select BG", vec2(WIDTH/4.9, HEIGHT/4.1))
     --legendbackground = sprite("Dropbox:MenuBackground", WIDTH/2, HEIGHT/2, WIDTH, HEIGHT)
+    
 end
     
 
@@ -56,7 +57,9 @@ function StoreScreenScene:draw()
     if(legendaryBackground.selected == true) then
         --legendbackground = true
         sprite("Dropbox:legendaryBackground", WIDTH/2, HEIGHT/2, WIDTH, HEIGHT)
+    
     end
+    
     sprite("Dropbox:Dialogue Box", WIDTH/2, HEIGHT/1.15)
     fill(31, 54, 88, 255)
     stroke(221, 255, 0, 255)

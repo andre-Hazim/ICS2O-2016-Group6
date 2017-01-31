@@ -27,6 +27,7 @@ backMusic = nil
 -- Use this function to perform your initial setup
 function setup() -- set up display options
     
+    supportedOrientations(LANDSCAPE_ANY)
     displayMode(FULLSCREEN)
     noFill()
     noSmooth()
@@ -44,7 +45,6 @@ function setup() -- set up display options
     Scene("mainGameScene", MainGameScene)
     Scene("mainGameFailScene", MainGameFailScene)
     Scene("mainGameWinScene", MainGameWinScene)
-    Scene("mainWorldScene", MainWorldScene)
     Scene("afterLevelWinScene", AfterLevelWinScene)
     Scene("afterLevelFailScene",AfterLevelFailScene)
     Scene("settingsScene", SettingsScene)
