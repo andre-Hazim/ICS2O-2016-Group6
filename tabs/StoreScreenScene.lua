@@ -28,7 +28,7 @@ local codeBackground
 
 function StoreScreenScene:init()
     --sprite("Dropbox:MenuBackground")
-    moveBackButton = Button("Dropbox:Blue Back Circle Button", vec2(WIDTH/20, HEIGHT/1.067))  
+    moveBackButton = Button("Dropbox:Blue Back Circle Button", vec2(75, HEIGHT-75))  
     redBackground = Button("Dropbox:Level Select BG", vec2(WIDTH/2, HEIGHT/2.3))
     defaultBackground = Button("Dropbox:Level Select BG", vec2(WIDTH/2, HEIGHT/1.6))
     purpleBackground = Button("Dropbox:Level Select BG", vec2(WIDTH/2, HEIGHT/4.1))

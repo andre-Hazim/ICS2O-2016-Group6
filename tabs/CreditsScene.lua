@@ -14,7 +14,7 @@ local aBackButton
 function CreditsScene:init()
 
     --sprite("Cargo Bot:Command Right")
-    aBackButton = Button("Dropbox:Blue Back Circle Button", vec2(WIDTH/20, HEIGHT/1.067))  
+    aBackButton = Button("Dropbox:Blue Back Circle Button", vec2(75, HEIGHT-75))  
    
 end
     
