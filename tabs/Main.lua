@@ -11,15 +11,17 @@
 -- this turns on Game Center simulation from the Helper Class
 -- this is so you can call Game Center code within Codea 
 -- and just set this boolean to "false" before you export to Xcode
-DEBUG_GAMECENTER = true
+DEBUG_GAMECENTER = false
 
 -- Global variables to the entire project
 itemPurcased = {}
 worldSelected = nil
 levelSelected = nil
-backgroundColor = color(178, 178, 178, 255)
+backgroundColor = color(255, 255, 255, 255)
 local legendbackground
 backMusic = nil
+score = 0
+highScore = nil
 
 -- local variables to this scene
 
@@ -28,11 +30,15 @@ backMusic = nil
 function setup() -- set up display options
     
     supportedOrientations(LANDSCAPE_ANY)
-    displayMode(FULLSCREEN)
+    displayMode(FULLSCREEN_NO_BUTTONS)
     noFill()
     noSmooth()
     noStroke()
     pushStyle()    
+
+    highScore = readLocalData("highScore", 0)
+    --highScore = 0
+    --saveLocalData("highScore", 0)
     
     -- create the scenes
     Scene("companyLogoScene", CompanyLogoScene)

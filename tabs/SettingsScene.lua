@@ -8,7 +8,7 @@ local unmuteButton
 function SettingsScene:init()
 
     --sprite("Dropbox:Play Button")
-    moveBackButton = Button("Dropbox:Blue Back Circle Button", vec2(WIDTH/20, HEIGHT/1.067)) 
+    moveBackButton = Button("Dropbox:Blue Back Circle Button", vec2(75, HEIGHT-75)) 
     muteButton = Button("Dropbox:Stop Button", vec2(WIDTH/2, HEIGHT/1.5))
     unmuteButton = Button("Dropbox:Play Button", vec2(WIDTH/2, HEIGHT/2))
     

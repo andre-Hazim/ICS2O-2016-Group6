@@ -26,14 +26,14 @@ function MainMenuScene:init()
     noStroke()
     pushStyle()  
 
- --sprite("Dropbox:GoodStoreIcon")
+--sprite("Dropbox:Leaderboards")
         
     -- scene setup code here
-    storeButton = Button("Dropbox:GoodStoreIcon", vec2(WIDTH/2, HEIGHT/10))
-    creditsButton = Button("Dropbox:Selector", vec2(WIDTH/1.05, HEIGHT/0.9899))
-    acheivmentsButton = Button("Dropbox:Chest Closed", vec2(WIDTH/20, HEIGHT/0.9899))
+    storeButton = Button("Dropbox:GoodStoreIcon", vec2(WIDTH/2, 75))
+    creditsButton = Button("Dropbox:Blue Info Button", vec2(WIDTH-75, HEIGHT-75))
+    --acheivmentsButton = Button("Dropbox:Leaderboards", vec2(75, HEIGHT-75), 0.3)
     playButton = Button("Dropbox:Blue Move Scene Forward Button", vec2(WIDTH/2, HEIGHT/2))
-    settingsButton = Button("Dropbox:Explosion", vec2(WIDTH/21, HEIGHT/8))
+    --settingsButton = Button("Dropbox:Blue Settings Button", vec2(75, 75))
 end
 
 function MainMenuScene:draw()
@@ -44,9 +44,16 @@ function MainMenuScene:draw()
     
     storeButton:draw()
     creditsButton:draw()
-    acheivmentsButton:draw()
+    --acheivmentsButton:draw()
     playButton:draw()
-    settingsButton:draw()
+    --settingsButton:draw()
+    
+    font("AmericanTypewriter-Bold")
+    fontSize(75)
+    fill(0, 0, 0, 255)
+    pushStyle()
+    text ("Your high score is: " .. math.ceil(highScore), WIDTH/2, (HEIGHT/2-200))
+    popStyle()
     
 end
 
@@ -55,9 +62,9 @@ function MainMenuScene:touched(touch)
     
     storeButton:touched(touch)
     creditsButton:touched(touch)
-    acheivmentsButton:touched(touch)
+    --acheivmentsButton:touched(touch)
     playButton:touched(touch)
-    settingsButton:touched(touch)
+    --settingsButton:touched(touch)
     
     if(storeButton.selected == true) then
        Scene.Change("storeScreenScene")
@@ -71,7 +78,16 @@ function MainMenuScene:touched(touch)
         Scene.Change("mainWorldScene")
     end
     
-    if(settingsButton.selected == true) then
-        Scene.Change("settingsScene")
-    end
+    --if(settingsButton.selected == true) then
+        --Scene.Change("settingsScene")
+    --end
+    
+    --if (acheivmentsButton.selected == true) then
+        -- always check to ensure Game Center is logged in
+        -- before doing a command, or the player will
+        -- get anoying warnings!
+        --if (gamecenter.enabled() == true) then
+           -- gamecenter.showLeaderboards()
+       -- end
+   -- end  
 end

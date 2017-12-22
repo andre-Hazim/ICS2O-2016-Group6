@@ -1,9 +1,24 @@
-MainGameWinScene = class()
-local timelimit = 1
+-- ICS2O-2016-Group6
+-- MainGameWinScene
 
-function MainGameWinScene:init(x)
+-- Created by: ?
+-- Created on: ?
+-- Created for: ICS2O
+-- Updated by: Mr. Coxall
+-- This is the project for Group #6-2016
+-- Shows correct and then moves back to main game
+
+MainGameWinScene = class()
+
+-- local variables to this scene
+local startTimeWin
+
+function MainGameWinScene:init()
     -- you can accept and set parameters here
-    self.x = x
+    
+    -- scene setup code here
+    startTimeWin = ElapsedTime
+
 end
 
 function MainGameWinScene:draw()
@@ -13,15 +28,10 @@ function MainGameWinScene:draw()
     fontSize(100)
     fill(0, 0, 0, 255)
     text("Correct",WIDTH/2,HEIGHT/2)
-    timelimit = timelimit - 0.02
-    math.ceil(timelimit)
-    if (timelimit <=0)then
+    
+    if(startTimeWin + 1 < ElapsedTime) then
         Scene.Change("mainGameScene")
-        timelimit= 1
     end
-    
-
-    
 end
 
 function MainGameWinScene:touched(touch)
